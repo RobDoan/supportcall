@@ -22,7 +22,7 @@ class TwilioController < ApplicationController
 
 	  response = Twilio::TwiML::VoiceResponse.new		
 
-	  if api_aip[:result][:action] == 'dial'
+	  if api_ai[:result][:action] == 'dial'
 	  	phone_number = api_ai[:result][:parameters][:"phone-number"]
 	  	if phone_number.empty?
 	  		phone_number = '5142488681'
