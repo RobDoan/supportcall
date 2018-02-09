@@ -7,6 +7,7 @@ class TwilioController < ApplicationController
 	def index
 		
 	end
+
 	def welcome_ivr
 		response = Twilio::TwiML::VoiceResponse.new
 		response.gather(input: 'speech', 
