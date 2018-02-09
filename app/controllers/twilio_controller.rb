@@ -5,7 +5,7 @@ class TwilioController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
 	def index
-		render plain: "it works"
+		
 	end
 	def welcome_ivr
 		response = Twilio::TwiML::VoiceResponse.new
