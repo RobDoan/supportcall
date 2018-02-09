@@ -9,8 +9,8 @@ class TwilioController < ApplicationController
 		response.gather(input: 'speech', 
 						language: 'en-CA',
 						action: '/ivr_response',
-						timeout: 4, num_digits: 1) do |gather|
-  			gather.say('Thanks for calling C 2 D services. What can I help you?')  			
+						timeout: 6, num_digits: 1) do |gather|
+  			gather.say('Thanks for calling our services. What can I help you?')  			
 		end
 		render xml: response.to_s
 	end
