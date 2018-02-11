@@ -39,7 +39,7 @@ class TwilioController < ApplicationController
 		end
 		render xml: response.to_s
 	end
-	
+	# 5148037920	
 	private 
 
 	def send_session(api_ai, twilio_response)
@@ -47,10 +47,7 @@ class TwilioController < ApplicationController
 			twilio_response.say("Thank you for your information. 
 				You profile already save on our server")	  	
 		end
-		twilio_response.gather(input: 'speech', 
-			language: 'en-CA',
-			action: '/ivr_response',
-			timeout: 6) do |gather|
+		twilio_response.gather(input: 'speech', language: 'en-CA',	action: '/ivr_response', timeout: 6) do |gather|
 			gather.say("Do you need anything else?")
 		end
 	end
@@ -63,14 +60,13 @@ class TwilioController < ApplicationController
 				action: "/ivr_response/#{api_ai[:sessionId]}",
 				timeout: 6, num_digits: 1) do |gather|
 				gather.say(api_ai[:result][:fulfillment][:speech])  			
-
-			else
-				twilio_response.say("Wait a few seconds, we are connecting the call.")
-				twilio_response.dial do |dial|
-					dial.number(phone_number)
-				end		
-			end
-		end
+			end			
+		else
+			twilio_response.say("Wait a few seconds, we are connecting the call.")
+			twilio_response.dial do |dial|
+				dial.number(phone_number)
+			end		
+		end		
 	end
 
 	def api_ai_response(speech_result, session_id)
